@@ -300,7 +300,6 @@ dependencies = [
  "directories",
  "log",
  "regex",
- "serde_core",
  "serde_json",
  "simple_logger",
  "small-http",
