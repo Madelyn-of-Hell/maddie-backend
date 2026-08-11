@@ -296,7 +296,7 @@ fn handle_create_room_request(query: &HashMap<String, String>) -> Response {
                         },
                         |users: String| {
                             let room_file = data_dir.join(&room_code).with_extension("json");
-                            match fs::write(room_file, format!("{{\n\t\"config\": {room_config},\n\t\"players\": {users},\n\t\"game_log\": [],\n\t\"winner\": \"\"\n}}")) {
+                            match fs::write(room_file, format!("{{\n\t\"config.toml\": {room_config},\n\t\"players\": {users},\n\t\"game_log\": [],\n\t\"winner\": \"\"\n}}")) {
                                 Ok(()) => {
                                     info!("Created room {room_code}");
                                     Response::with_status(Status::Ok).body(format!("room_code={room_code}&user_code={user_code}"))

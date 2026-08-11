@@ -1,0 +1,32 @@
+{
+  "/": {
+    "defaultPath": "index.html",
+    "secondaryPath": "secondary/index.html",
+    "secondaryCondition": "those who know=meee :3",
+    "mimeType": "text/html"
+  },
+  "/main.css": {
+    "defaultPath": "main.css",
+    "secondaryPath": "secondary/main.css",
+    "secondaryCondition": "those who know=meee :3",
+    "mimeType": "text/css"
+  },
+  "/main.js": {
+    "defaultPath": "main.js",
+    "secondaryPath": "secondary/main.js",
+    "secondaryCondition": "those who know=meee :3",
+    "mimeType": "text/javascript"
+  },
+  "/files/Normal Round.png": {
+    "defaultPath": "files/Normal Round.png",
+    "mimeType": "image/png"
+  },
+  "/files/Faceplate Round.png": {
+    "defaultPath": "files/Faceplate Round.png",
+    "mimeType": "image/png"
+  },
+  "/files/mask.svg": {
+    "defaultPath": "files/mask.svg",
+    "mimeType": "image/svg+xml"
+  }
+}
