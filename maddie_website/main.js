@@ -21,7 +21,6 @@ cookieStore.addEventListener(
 function randomise_offsets() {
     for (let element of document.getElementsByClassName("left-box")) {
         let offset = (Math.random() + 0.5) * 10
-        console.log(`offsetting element ${element} by ${offset}`)
         element.style.marginLeft = `${offset}%`
     }
     for (let element of document.getElementsByClassName("right-box")) {

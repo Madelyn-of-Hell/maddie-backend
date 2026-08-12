@@ -1,0 +1,1 @@
+scp -r maddie_website root@oneluckymushroom.dev:~/site

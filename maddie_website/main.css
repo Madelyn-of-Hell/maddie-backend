@@ -1,6 +1,10 @@
 :root {
-    --mouse-x: 100;
-    --mouse-y: 100;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+}
+@font-face {
+    font-family: "JetBrains Mono"; /* set name */
+    src: url("files/Jetbrains Mono.woff2"); /* url of the font */
 }
 body {
     padding-left:10%;
@@ -27,7 +31,6 @@ body {
     color: rgb(255, 41, 41)
 }
 .content.secondary {
-
     padding-left: 5%;
     padding-right: 5%;
     margin-top: -3%;
@@ -82,4 +85,8 @@ h1 {
 }
 .one-line {
     text-wrap: nowrap;
+}
+.friend-button {
+    width:88px;
+    height:31px;
 }
