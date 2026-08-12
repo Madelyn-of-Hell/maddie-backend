@@ -7,8 +7,14 @@
     src: url("files/Jetbrains Mono.woff2"); /* url of the font */
 }
 body {
+    padding: 0;
+    margin: 0;
+}
+.facade {
+    padding-top:1%;
     padding-left:10%;
     padding-right:10%;
+    margin:0;
     background: radial-gradient(
             circle at var(--mouse-x) var(--mouse-y),
             rgb(100, 0, 0) 0%,
@@ -16,6 +22,34 @@ body {
             rgb(100, 0, 0) 200%
     );
     height:100em;
+    clip-path: url("#circle-mask");
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index: 1;
+}
+.real-site {
+    padding-top:1%;
+    padding-left:10%;
+    padding-right:10%;
+    margin:0;
+    background: radial-gradient(
+            circle at var(--mouse-x) var(--mouse-y),
+            rgb(100, 100, 100) 0%,
+            rgb(0, 0, 0) 15%,
+            rgb(10, 10, 10) 60%,
+            rgb(40,40,40) 100%,
+            rgb(100, 0, 0) 200%
+    );
+    height:100em;
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index: -1;
 }
 .content {
     background: rgba(70,30,30,0.8);
@@ -28,8 +62,9 @@ body {
     display:flex;
     flex-direction: column;
     font-family: "JetBrains Mono";
-    color: rgb(255, 41, 41)
+    color: rgb(255, 41, 41);
 }
+
 .content.secondary {
     padding-left: 5%;
     padding-right: 5%;
@@ -48,6 +83,10 @@ body {
     filter: blur(0px);
     transition: 0.2s;
 }
+.content.real {
+    background: rgba(50,50,50,0.5);
+    border: rgb(80, 80, 80) 0.2em solid;
+}
 .header {
     display:flex;
     flex-direction: column;
@@ -60,15 +99,22 @@ body {
     height:256px;
 
 }
+.pfp.real {
+    background-image: url("files/Normal Round.png");
+}
 .pfp:hover {
     background-size: cover;
     width:300px;
     height:300px;
     rotate:-1turn;
-    transition:
-        width 0.5s ease-in-out,
-        height 0.5s ease-in-out,
-        rotate 0.5s ease-out;
+    transition: 0.5s ease-in-out
+}
+.pfp.real:hover {
+    background-size: cover;
+    width:300px;
+    height:300px;
+    rotate:-1turn;
+    transition: 0.5s ease-in-out
 }
 .right-box {
     margin-left:50%;
@@ -89,4 +135,5 @@ h1 {
 .friend-button {
     width:88px;
     height:31px;
+    image-rendering: pixelated;
 }

@@ -7,8 +7,6 @@
   },
   "/main.css": {
     "defaultPath": "main.css",
-    "secondaryPath": "secondary/main.css",
-    "secondaryCondition": "those who know=meee :3",
     "mimeType": "text/css"
   },
   "/main.js": {
