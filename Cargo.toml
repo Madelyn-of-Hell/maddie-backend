@@ -8,11 +8,11 @@ directories = "6.0.0"
 regex = "1.13.1"
 serde_json = "1.0.151"
 simple_logger = "5.2.0"
-small-http = "0.2.1"
 urlencoding = "2.1.3"
 uuid = { version =  "1.24.0", features = ["v4"] }
 log = "0.4.33"
-
+tiny_http = { version = "0.12.0" , features = ["ssl-openssl"]}
+openssl = { version = "0.10", features = ["vendored"] }
 [lints.clippy]
 # UM, ACTUALLY
 pedantic = { level = "deny", priority = -1 }

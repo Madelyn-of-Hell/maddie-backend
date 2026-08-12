@@ -28,5 +28,9 @@
   "/files/mask.svg": {
     "defaultPath": "files/mask.svg",
     "mimeType": "image/svg+xml"
+  },
+  "/files/Jetbrains Mono.woff2": {
+    "defaultPath": "files/Jetbrains Mono.woff2",
+    "mimeType": "font/woff2"
   }
 }
