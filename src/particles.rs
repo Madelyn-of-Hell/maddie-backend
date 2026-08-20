@@ -4,17 +4,15 @@ use std::io::Cursor;
 use std::path::PathBuf;
 use directories::ProjectDirs;
 use log::{error, info, trace};
-use regex::{Captures, Regex};
 use serde_json::{to_string_pretty, Error, Value};
 use tiny_http::{Method, Request, Response};
-use urlencoding::decode;
 use uuid::Uuid;
 use crate::query::Query;
 
 pub fn particles_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
     match request.method() {
         Method::Get => { // Create a room
-            parse_query(request.url().query()).map_or_else(
+            request.url().query().map_or_else(
                 || {
                     info!("ignoring POST request with invalid query: {:?}", request.url().query());
                     Response::from_string("").with_status_code(400)
@@ -44,9 +42,9 @@ pub fn particles_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
             handle_join_request(request)
         },
         Method::Post => { // Make a move
-            parse_query(request.url().query()).map_or_else(
+            request.url().query().map_or_else(
                 || {
-                    info!("ignoring POST request with invalid query: {:?}", request.url().query());
+                    info!("ignoring POST request with invalid query: {:?}", request.url());
                     Response::from_string("").with_status_code(400)
                 },
                 |query: HashMap<String, String>| {
@@ -74,6 +72,7 @@ pub fn particles_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
         }
     }
 }
+
 
 fn handle_view_request(query: &HashMap<String, String>) -> Response<Cursor<Vec<u8>>> {
     dir().map_or_else(
@@ -322,7 +321,7 @@ fn handle_join_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
             Response::from_string("").with_status_code(500)
         },
         |data_dir: PathBuf| {
-            parse_query(request.url().query()).map_or_else(
+            request.url().query().map_or_else(
                 || {
                     info!("Ignoring bad query in join request");
                     Response::from_string("").with_status_code(400)
@@ -407,15 +406,7 @@ fn handle_join_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
     )
 
 }
-fn parse_query(query: Option<&str>) -> Option<HashMap<String, String>> {
-    let re = Regex::new(r"([^&]+)=([^&]+)&?").ok()?;
 
-    let mut map:HashMap<String, String> = HashMap::new();
-    for (_, [key, value]) in re.captures_iter(query?).map(|c: Captures| c.extract()) {
-        let _ = map.insert(key.to_string(), decode(value).ok()?.into_owned());
-    }
-    Some(map)
-}
 fn dir() -> Option<PathBuf> {
     let dirs = ProjectDirs::from("com", "madelyn_belmen", "particles_backend")?;
     let data_dir = dirs.data_dir();
