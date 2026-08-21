@@ -1,6 +1,7 @@
 mod particles;
 mod static_site;
 mod query;
+mod webring;
 
 use std::ffi::OsStr;
 use std::path::PathBuf;

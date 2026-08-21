@@ -13,6 +13,8 @@ uuid = { version =  "1.24.0", features = ["v4"] }
 log = "0.4.33"
 tiny_http = { version = "0.12.0" , features = ["ssl-openssl"]}
 openssl = { version = "0.10", features = ["vendored"] }
+serde = { version = "1.0.229", features = ["derive"] }
+rand = "0.10.2"
 [lints.clippy]
 # UM, ACTUALLY
 pedantic = { level = "deny", priority = -1 }
