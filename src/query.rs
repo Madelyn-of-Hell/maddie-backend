@@ -5,12 +5,19 @@ use urlencoding::decode;
 pub trait Query {
     fn query(&self) -> Option<HashMap<String, String>>;
 }
+pub trait Path {
+    fn path(&self) -> Option<Vec<&str>>;
+}
 impl Query for &str {
     fn query(&self) -> Option<HashMap<String, String>> {
         parse_query(self.split("/?").last())
     }
 }
-
+impl Path for &str {
+    fn path(&self) -> Option<Vec<&str>> {
+        Some(self.split("/?").next()?.split('/').collect::<Vec<&str>>())
+    }
+}
 fn parse_query(query: Option<&str>) -> Option<HashMap<String, String>> {
     let re = Regex::new(r"([^&]+)=([^&]+)&?").ok()?;
 

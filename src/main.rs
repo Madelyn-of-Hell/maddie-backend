@@ -10,7 +10,9 @@ use tiny_http::{Request, Response, Server, SslConfig};
 use std::{fs, thread};
 use std::io::{Cursor, Error};
 use crate::particles::particles_request;
+use crate::query::Path;
 use crate::static_site::site_request;
+use crate::webring::webring_request;
 
 fn main() {
     if SimpleLogger::new().env().init().is_err() {
@@ -69,14 +71,15 @@ fn main() {
 
 fn handle_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
     debug!("Handling request: {request:?}");
-    PathBuf::from(request.url()).iter().next().map_or_else(
-        || Response::from_string("").with_status_code(404),
-        |path: &OsStr| {
-            let path = path.to_string_lossy().into_owned();
-            match path.as_str() {
-                "particles" => particles_request(request),
-                _ => site_request(request)
-            }
-        }
-   )
+    let url= request.url();
+    let Some(path) = url.path() else {
+        info!("Wasn't a valid path somehow?? {}", request.url());
+        return Response::from_string("").with_status_code(400)
+    };
+
+    match path.get(1) {
+        Some(&"particles") => particles_request(request),
+        Some(&"webring") => webring_request(request),
+        _ => site_request(request)
+    }
 }
