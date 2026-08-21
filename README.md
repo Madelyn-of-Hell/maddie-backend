@@ -5,7 +5,7 @@ A custom backend for [my website](https://oneluckymushroom.dev). Also contains a
 
 ## Webring
 
-1. Create a pr adding yourself to `members.json`. Member entries should be of the form:
+1. Create a pr adding yourself to `webring.json`. Member entries should be of the form:
 ```json
 {
   "name": "<Choose a name>",
