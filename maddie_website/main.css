@@ -137,3 +137,8 @@ h1 {
     height:31px;
     image-rendering: pixelated;
 }
+.url {
+    color: rgb(255, 41, 41);
+    text-decoration: none;
+    margin:.5em
+}
