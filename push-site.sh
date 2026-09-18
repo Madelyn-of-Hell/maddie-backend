@@ -1,1 +1,1 @@
-scp -r maddie_website root@oneluckymushroom.dev:~/site
+scp -r maddie_website root@oneluckymushroom.dev:~/maddie-backend

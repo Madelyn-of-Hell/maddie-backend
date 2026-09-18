@@ -23,6 +23,10 @@
     "defaultPath": "files/Faceplate Round.png",
     "mimeType": "image/png"
   },
+  "/files/88x31.gif": {
+    "defaultPath": "files/88x31.gif",
+    "mimeType": "image/png"
+  },
   "/files/mask.svg": {
     "defaultPath": "files/mask.svg",
     "mimeType": "image/svg+xml"

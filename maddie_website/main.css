@@ -21,7 +21,7 @@ body {
             rgb(100,50,50) 50%,
             rgb(100, 0, 0) 200%
     );
-    height:100em;
+    height:150em;
     clip-path: url("#circle-mask");
     position: absolute;
     top:0;
@@ -43,7 +43,7 @@ body {
             rgb(40,40,40) 100%,
             rgb(100, 0, 0) 200%
     );
-    height:100em;
+    height:150em;
     position: absolute;
     top:0;
     right:0;
@@ -59,6 +59,7 @@ body {
     padding-bottom:5%;
     border: rgb(80, 40, 40) 0.2em solid;
     border-radius: 1em;
+    position:fixed;
     display:flex;
     flex-direction: column;
     font-family: "JetBrains Mono";

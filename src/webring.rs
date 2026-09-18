@@ -50,8 +50,7 @@ pub fn webring_request(request: &Request) -> Response<Cursor<Vec<u8>>> {
         info!("Ignoring webring request with an unkown user: {source}");
         return Response::from_string("").with_status_code(404)
     };
-
-    let new_idx = (source_idx + direction as usize) % webring.0.len();
+    let new_idx = (((source_idx + direction as usize) % webring.0.len()) + webring.0.len()) % webring.0.len();
 
     let Some(new_page) = webring.0.get(new_idx) else {
         error!("Couldn't get a new page that SHOULD exist—index {} of {:?}", new_idx, webring);
