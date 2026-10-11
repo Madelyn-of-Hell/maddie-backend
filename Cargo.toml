@@ -15,7 +15,9 @@ tiny_http = { version = "0.12.0" , features = ["ssl-openssl"]}
 openssl = { version = "0.10", features = ["vendored"] }
 serde = { version = "1.0.229", features = ["derive"] }
 rand = "0.10.2"
-threadpool = "1.8.1"
+tokio = {version = "1.53.2", features = ["full"]}
+
+
 [lints.clippy]
 # UM, ACTUALLY
 pedantic = { level = "deny", priority = -1 }
