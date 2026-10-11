@@ -3,13 +3,12 @@ mod static_site;
 mod query;
 mod webring;
 
-use std::ffi::OsStr;
-use std::path::PathBuf;
 use simple_logger::SimpleLogger;
 use log::{debug, error, info};
 use tiny_http::{Request, Response, Server, SslConfig};
-use std::{fs, thread};
+use std::fs;
 use std::io::{Cursor, Error};
+use threadpool::ThreadPool;
 use crate::particles::particles_request;
 use crate::query::Path;
 use crate::static_site::site_request;
@@ -43,17 +42,19 @@ fn main() {
                             error!("failed to start server: {error}");
                         },
                         |server: Server| {
+                            let workers = 16;
+                            let pool = ThreadPool::new(workers);
                             loop {
                                 match server.recv() {
                                     Ok(request) => {
-                                        thread::spawn(
+                                        pool.execute(
                                             move || {
                                                 let response = handle_request(&request);
-                                                request.respond(response).map_err(
+                                                let _ = request.respond(response).map_err(
                                                     |e| {
                                                         error!("Couldn't send response: {e}");
                                                     }
-                                                )
+                                                );
                                             }
                                         );
                                     }

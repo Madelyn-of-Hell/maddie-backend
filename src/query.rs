@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::path::PathBuf;
 use regex::{Captures, Regex};
 use urlencoding::decode;
 
